@@ -86,7 +86,7 @@ module Matching
 
     def publish_cancel(order, reason)
       Rails.logger.info "[#{@market.id}] cancel order ##{order.id} - reason: #{reason}"
-      Config.order_processor && Config.order_processor.call({action: 'cancel', order: order.attributes})
+      Config.order_canceled && Config.order_canceled.call({action: 'cancel', order: order.attributes})
     end
 
   end

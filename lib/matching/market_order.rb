@@ -13,7 +13,7 @@ module Matching
       @volume     = attrs[:volume].to_d
       @market     = attrs[:market]
 
-      raise ::Matching::InvalidOrderError.new(attrs) unless valid?(attrs)
+      raise Matching::InvalidOrderError.new(attrs) unless valid?(attrs)
     end
 
     def trade_with(counter_order, counter_book)

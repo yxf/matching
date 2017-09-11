@@ -12,8 +12,3 @@ rescue NameError
     end
   end
 end
-
-
-module Matching
-  # Your code goes here...
-end
