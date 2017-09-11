@@ -6,9 +6,9 @@ module Matching
       attr_accessor :order_book_changed
 
       def init!
-        @order_traded = -> attrs { puts attrs }
-        @order_canceled = -> attrs { puts attrs }
-        @order_book_changed = -> attrs { puts attrs }
+        @order_traded = -> data { puts data }
+        @order_canceled = -> data { puts data }
+        @order_book_changed = -> data { puts data }
       end
     end
 
