@@ -2,24 +2,24 @@ require_relative 'config'
 module Matching
   class Engine
 
-    attr :orderbook, :mode, :queue
+    attr_accessor :order_book_manager
 
-    def ask_orders
-      @orderbook.ask_orders
+    def ask_order_book
+      @order_book_manager.ask_order_book
     end
 
-    def bid_orders
-      @orderbook.bid_orders
+    def bid_order_book
+      @order_book_manager.bid_order_book
     end
 
     # Matching::Engine.new('btccny')
     def initialize(market, options={})
       @market    = market
-      @orderbook    = OrderBookManager.new(market)
+      @order_book_manager    = OrderBookManager.new(market)
     end
 
     def submit(order)
-      book, counter_book = @orderbook.get_books order.type
+      book, counter_book = @order_book_manager.get_books order.type
       match order, counter_book
       add_or_cancel order, book
     rescue
@@ -28,7 +28,7 @@ module Matching
     end
 
     def cancel(order)
-      book, counter_book = orderbook.get_books order.type
+      book, counter_book = @order_book_manager.get_books order.type
       if removed_order = book.remove(order)
         publish_cancel removed_order, "cancelled by user"
       else
@@ -40,13 +40,13 @@ module Matching
     end
 
     def limit_orders
-      { ask: ask_orders.limit_orders,
-        bid: bid_orders.limit_orders }
+      { ask: ask_order_book.limit_orders,
+        bid: bid_order_book.limit_orders }
     end
 
     def market_orders
-      { ask: ask_orders.market_orders,
-        bid: bid_orders.market_orders }
+      { ask: ask_order_book.market_orders,
+        bid: bid_order_book.market_orders }
     end
 
     private
@@ -85,7 +85,7 @@ module Matching
     end
 
     def publish_cancel(order, reason)
-      Rails.logger.info "[#{@market.id}] cancel order ##{order.id} - reason: #{reason}"
+      Rails.logger.info "[#{@market}] cancel order ##{order.id} - reason: #{reason}"
       Config.order_canceled && Config.order_canceled.call({action: 'cancel', order: order.attributes})
     end
 

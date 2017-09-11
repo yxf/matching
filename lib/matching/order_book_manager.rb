@@ -1,7 +1,7 @@
 module Matching
   class OrderBookManager
 
-    attr :ask_orders, :bid_orders
+    attr_accessor :ask_order_book, :bid_order_book
 
     def self.build_order(attrs)
       attrs.symbolize_keys!
@@ -14,16 +14,16 @@ module Matching
 
     def initialize(market, options={})
       @market     = market
-      @ask_orders = OrderBook.new(market, :ask, options)
-      @bid_orders = OrderBook.new(market, :bid, options)
+      @ask_order_book = OrderBook.new(market, :ask, options)
+      @bid_order_book = OrderBook.new(market, :bid, options)
     end
 
     def get_books(type)
       case type
       when :ask
-        [@ask_orders, @bid_orders]
+        [@ask_order_book, @bid_order_book]
       when :bid
-        [@bid_orders, @ask_orders]
+        [@bid_order_book, @ask_order_book]
       end
     end
 

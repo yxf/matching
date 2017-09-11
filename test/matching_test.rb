@@ -6,7 +6,6 @@ require_relative "../lib/matching/limit_order"
 require_relative "../lib/matching/order_book_manager"
 require_relative "../lib/matching/order_book"
 require_relative "../lib/matching/engine"
-require_relative "../test/amqp_mock"
 
 # require_relative "../lib/matching/limit_order/"
 class MatchingTest < Minitest::Test
@@ -27,8 +26,8 @@ class MatchingTest < Minitest::Test
     @engine.submit(@ask)
     @engine.submit(@bid)
 
-    assert_equal @engine.ask_orders.limit_orders.length, 0
-    assert_equal @engine.bid_orders.limit_orders.length, 0
+    assert_equal @engine.ask_order_book.limit_orders.length, 0
+    assert_equal @engine.bid_order_book.limit_orders.length, 0
   end
 
   def test_partial_match_incoming_order_should_execute_trade
@@ -37,11 +36,12 @@ class MatchingTest < Minitest::Test
     @engine.submit(@ask)
     @engine.submit(@bid)
 
-    assert_empty @engine.ask_orders.limit_orders
-    assert_equal @engine.bid_orders.limit_orders.length, 0
+    assert_empty @engine.ask_order_book.limit_orders
+    assert_equal @engine.bid_order_book.limit_orders.length, 1
+    assert_equal @engine.bid_order_book.top.volume, 2
 
     @engine.cancel(@bid)
-    assert_empty @engine.bid_orders.limit_orders
+    assert_empty @engine.bid_order_book.limit_orders
   end
 
   def test_match_order_with_many_counter_orders_should_execute_trade
@@ -55,8 +55,8 @@ class MatchingTest < Minitest::Test
     asks.each {|ask| @engine.submit(ask) }
     @engine.submit(bid)
 
-    assert_empty @engine.ask_orders.limit_orders
-    assert_equal @engine.bid_orders.limit_orders.length, 0
+    assert_empty @engine.ask_order_book.limit_orders
+    assert_equal @engine.bid_order_book.limit_orders.length, 1
   end
 
   def test_fully_match_order_after_some_cancellatons
@@ -70,18 +70,20 @@ class MatchingTest < Minitest::Test
 
     @engine.submit(bid)
 
-    assert_empty @engine.ask_orders.limit_orders
-    assert_equal @engine.bid_orders.limit_orders.length, 0
+    assert_empty @engine.ask_order_book.limit_orders
+    assert_equal @engine.bid_order_book.limit_orders.length, 1
+    assert_equal @engine.bid_order_book.top.volume, 7
+
   end
 
   def test_should_cancel_order
     @engine.submit(@ask)
     @engine.cancel(@ask)
-    assert_empty @engine.ask_orders.limit_orders
+    assert_empty @engine.ask_order_book.limit_orders
 
     @engine.submit(@bid)
     @engine.cancel(@bid)
-    assert_empty @engine.bid_orders.limit_orders
+    assert_empty @engine.bid_order_book.limit_orders
   end
 
   def should_add_up_used_funds_to_locked_funds
