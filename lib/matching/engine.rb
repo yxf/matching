@@ -81,12 +81,12 @@ module Matching
       funds  = trade[2]
 
       Rails.logger.info "[#{@market}] new trade - ask: #{ask.label} bid: #{bid.label} price: #{price} volume: #{volume} funds: #{funds}"
-      Config.order_traded && Config.order_traded.call({market: @market, ask_id: ask.id, bid_id: bid.id, strike_price: price, volume: volume, funds: funds})
+      Matching.order_traded && Matching.order_traded.call({market: @market, ask_id: ask.id, bid_id: bid.id, strike_price: price, volume: volume, funds: funds})
     end
 
     def publish_cancel(order, reason)
       Rails.logger.info "[#{@market}] cancel order ##{order.id} - reason: #{reason}"
-      Config.order_canceled && Config.order_canceled.call({action: 'cancel', order: order.attributes})
+      Matching.order_canceled && Matching.order_canceled.call({action: 'cancel', order: order.attributes})
     end
 
   end

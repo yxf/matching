@@ -124,7 +124,7 @@ module Matching
     def broadcast(data)
       return unless @broadcast
       Rails.logger.debug "orderbook broadcast: #{data.inspect}"
-      Config.order_book_changed && Config.order_book_changed.call(data)
+      Matching.order_book_changed && Config.order_book_changed.call(data)
     end
 
   end
