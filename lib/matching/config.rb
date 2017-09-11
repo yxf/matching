@@ -12,6 +12,6 @@ module Matching
       end
     end
 
-    # init!
+    init!
   end
 end
