@@ -81,7 +81,7 @@ module Matching
       funds  = trade[2]
 
       Rails.logger.info "[#{@market}] new trade - ask: #{ask.label} bid: #{bid.label} price: #{price} volume: #{volume} funds: #{funds}"
-      Config.trade_executor && Config.trade_executor.call({market: @market, ask_id: ask.id, bid_id: bid.id, strike_price: price, volume: volume, funds: funds})
+      Config.order_traded && Config.order_traded.call({market: @market, ask_id: ask.id, bid_id: bid.id, strike_price: price, volume: volume, funds: funds})
     end
 
     def publish_cancel(order, reason)
