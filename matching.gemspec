@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "matching"
   spec.version       = Matching::VERSION
   spec.authors       = ["wumz"]
-  spec.email         = ["wumz@kexinbao100.com"]
+  spec.email         = ["wuminzhe@gmail.com"]
 
   spec.summary       = ""
   spec.description   = ""

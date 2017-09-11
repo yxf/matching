@@ -1,28 +1,25 @@
+require_relative 'config'
 module Matching
   class Engine
 
     attr :orderbook, :mode, :queue
 
     def ask_orders
-      orderbook.ask_orders
+      @orderbook.ask_orders
     end
 
     def bid_orders
-      orderbook.bid_orders
+      @orderbook.bid_orders
     end
 
+    # Matching::Engine.new('btccny')
     def initialize(market, options={})
       @market    = market
-      @orderbook = OrderBookManager.new(market)
-
-      # Engine is able to run in different mode:
-      # dryrun: do the match, do not publish the trades
-      # run:    do the match, publish the trades (default)
-      shift_gears(options[:mode] || :run)
+      @orderbook    = OrderBookManager.new(market)
     end
 
     def submit(order)
-      book, counter_book = orderbook.get_books order.type
+      book, counter_book = @orderbook.get_books order.type
       match order, counter_book
       add_or_cancel order, book
     rescue
@@ -52,33 +49,15 @@ module Matching
         bid: bid_orders.market_orders }
     end
 
-    def shift_gears(mode)
-      case mode
-      when :dryrun
-        @queue = []
-        class <<@queue
-          def enqueue(*args)
-            push args
-          end
-        end
-      when :run
-        @queue = AMQPQueue
-      else
-        raise "Unrecognized mode: #{mode}"
-      end
-
-      @mode = mode
-    end
-
     private
 
     def match(order, counter_book)
       return if order.filled?
-
       counter_order = counter_book.top
       return unless counter_order
 
       if trade = order.trade_with(counter_order, counter_book)
+
         counter_book.fill_top *trade
         order.fill *trade
 
@@ -97,26 +76,17 @@ module Matching
     def publish(order, counter_order, trade)
       ask, bid = order.type == :ask ? [order, counter_order] : [counter_order, order]
 
-      price  = @market.fix_number_precision :bid, trade[0]
-      volume = @market.fix_number_precision :ask, trade[1]
+      price  = trade[0]
+      volume = trade[1]
       funds  = trade[2]
 
-      Rails.logger.info "[#{@market.id}] new trade - ask: #{ask.label} bid: #{bid.label} price: #{price} volume: #{volume} funds: #{funds}"
-
-      @queue.enqueue(
-        :trade_executor,
-        {market_id: @market.id, ask_id: ask.id, bid_id: bid.id, strike_price: price, volume: volume, funds: funds},
-        {persistent: false}
-      )
+      Rails.logger.info "[#{@market}] new trade - ask: #{ask.label} bid: #{bid.label} price: #{price} volume: #{volume} funds: #{funds}"
+      Config.trade_executor && Config.trade_executor.call({market: @market, ask_id: ask.id, bid_id: bid.id, strike_price: price, volume: volume, funds: funds})
     end
 
     def publish_cancel(order, reason)
       Rails.logger.info "[#{@market.id}] cancel order ##{order.id} - reason: #{reason}"
-      @queue.enqueue(
-        :order_processor,
-        {action: 'cancel', order: order.attributes},
-        {persistent: false}
-      )
+      Config.order_processor && Config.order_processor.call({action: 'cancel', order: order.attributes})
     end
 
   end

@@ -5,7 +5,8 @@ begin
   Required::Module::const_get "Rails"
 rescue NameError
   module Rails
-    @@logger = Logger.new('./log.log', 'daily')
+    # @@logger = Logger.new('./log.log', 'daily')
+    @@logger = Logger.new($stdout)
     def self.logger
       @@logger
     end

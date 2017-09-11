@@ -1,4 +1,5 @@
 require_relative 'constants'
+require_relative 'price_level'
 
 module Matching
   class OrderBook
