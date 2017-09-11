@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="76042d0d-e191-4bdd-a049-9ff561819550" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/matching/engine.rb" afterPath="$PROJECT_DIR$/lib/matching/engine.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/matching/order_book.rb" afterPath="$PROJECT_DIR$/lib/matching/order_book.rb" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -76,7 +75,7 @@
         <entry file="file://$PROJECT_DIR$/lib/matching/order_book.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="701">
-              <caret line="126" column="14" lean-forward="false" selection-start-line="126" selection-start-column="14" selection-end-line="126" selection-end-column="14" />
+              <caret line="126" column="45" lean-forward="false" selection-start-line="126" selection-start-column="45" selection-end-line="126" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -417,7 +416,7 @@
       <workItem from="1504798791383" duration="14342000" />
       <workItem from="1504965979045" duration="197000" />
       <workItem from="1505055723940" duration="1809000" />
-      <workItem from="1505114347342" duration="17945000" />
+      <workItem from="1505114347342" duration="17970000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1505093028075</created>
@@ -475,7 +474,14 @@
       <option name="project" value="LOCAL" />
       <updated>1505140316843</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="bugfix">
+      <created>1505140602626</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1505140602626</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -511,7 +517,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34293000" />
+    <option name="totallyTimeSpent" value="34318000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="1023" extended-state="0" />
@@ -549,7 +555,8 @@
     <MESSAGE value="@trade_executor =&gt; @order_traded" />
     <MESSAGE value="attrs =&gt; data" />
     <MESSAGE value="Config way change" />
-    <option name="LAST_COMMIT_MESSAGE" value="Config way change" />
+    <MESSAGE value="bugfix" />
+    <option name="LAST_COMMIT_MESSAGE" value="bugfix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -939,7 +946,7 @@
     <entry file="file://$PROJECT_DIR$/lib/matching/order_book.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="701">
-          <caret line="126" column="14" lean-forward="false" selection-start-line="126" selection-start-column="14" selection-end-line="126" selection-end-column="14" />
+          <caret line="126" column="45" lean-forward="false" selection-start-line="126" selection-start-column="45" selection-end-line="126" selection-end-column="45" />
           <folding />
         </state>
       </provider>
