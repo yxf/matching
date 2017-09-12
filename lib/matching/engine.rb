@@ -1,4 +1,3 @@
-require_relative 'config'
 module Matching
   class Engine
 
