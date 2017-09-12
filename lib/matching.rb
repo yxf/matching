@@ -1,5 +1,12 @@
-require "matching/version"
-require "logger"
+require 'logger'
+require 'matching/version'
+require 'matching/constants'
+require 'matching/engine'
+require 'matching/limit_order'
+require 'matching/market_order'
+require 'matching/order_book'
+require 'matching/order_book_manager'
+require 'matching/price_level'
 
 begin
   Required::Module::const_get "Rails"
