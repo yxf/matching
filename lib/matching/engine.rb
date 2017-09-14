@@ -12,9 +12,9 @@ module Matching
     end
 
     # Matching::Engine.new('btccny')
-    def initialize(market, options={})
-      @market    = market
-      @order_book_manager    = OrderBookManager.new(market)
+    def initialize(market_id, options={})
+      @market_id    = market_id
+      @order_book_manager    = OrderBookManager.new(market_id)
     end
 
     def submit(order)
@@ -79,12 +79,12 @@ module Matching
       volume = trade[1]
       funds  = trade[2]
 
-      Rails.logger.info "[#{@market}] new trade - ask: #{ask.label} bid: #{bid.label} price: #{price} volume: #{volume} funds: #{funds}"
-      Matching.order_traded && Matching.order_traded.call({market: @market, ask_id: ask.id, bid_id: bid.id, strike_price: price, volume: volume, funds: funds})
+      Rails.logger.info "[#{@market_id}] new trade - ask: #{ask.label} bid: #{bid.label} price: #{price} volume: #{volume} funds: #{funds}"
+      Matching.order_traded && Matching.order_traded.call({market: @market_id, ask_id: ask.id, bid_id: bid.id, strike_price: price, volume: volume, funds: funds})
     end
 
     def publish_cancel(order, reason)
-      Rails.logger.info "[#{@market}] cancel order ##{order.id} - reason: #{reason}"
+      Rails.logger.info "[#{@market_id}] cancel order ##{order.id} - reason: #{reason}"
       Matching.order_canceled && Matching.order_canceled.call({action: 'cancel', order: order.attributes})
     end
 

@@ -6,14 +6,14 @@ module Matching
 
     attr :side
 
-    def initialize(market, side, options={})
-      @market = market
+    def initialize(market_id, side, options={})
+      @market_id = market_id
       @side   = side.to_sym
       @limit_orders = RBTree.new
       @market_orders = RBTree.new
 
       @broadcast = options.has_key?(:broadcast) ? options[:broadcast] : true
-      broadcast(action: 'new', market: @market, side: @side)
+      broadcast(action: 'new', market: @market_id, side: @side)
 
       singleton = class<<self;self;end
       singleton.send :define_method, :limit_top, self.class.instance_method("#{@side}_limit_top")

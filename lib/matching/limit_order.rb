@@ -2,8 +2,7 @@ require_relative 'constants'
 
 module Matching
   class LimitOrder
-    attr :id, :timestamp, :type, :price, :market
-    attr_accessor :volume
+    attr_accessor :id, :timestamp, :type, :price, :market_id, :volume
 
     def initialize(attrs)
       @id         = attrs[:id]
@@ -11,7 +10,7 @@ module Matching
       @type       = attrs[:type].to_sym
       @volume     = attrs[:volume].to_d
       @price      = attrs[:price].to_d
-      @market     = attrs[:market]
+      @market_id     = attrs[:market_id]
 
       raise InvalidOrderError.new(attrs) unless valid?(attrs)
     end
@@ -54,17 +53,17 @@ module Matching
 
     def valid?(attrs)
       return false unless [:ask, :bid].include?(type)
-      id && timestamp && market && price > ZERO
+      id && timestamp && market_id && price > ZERO
     end
 
     def attributes
-      { id: @id,
-        timestamp: @timestamp,
-        type: @type,
-        volume: @volume,
-        price: @price,
-        market: @market,
-        ord_type: 'limit' }
+      {id: @id,
+       timestamp: @timestamp,
+       type: @type,
+       volume: @volume,
+       price: @price,
+       market: @market_id,
+       ord_type: 'limit' }
     end
 
   end

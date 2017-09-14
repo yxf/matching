@@ -12,10 +12,10 @@ module Matching
       klass.new attrs
     end
 
-    def initialize(market, options={})
-      @market     = market
-      @ask_order_book = OrderBook.new(market, :ask, options)
-      @bid_order_book = OrderBook.new(market, :bid, options)
+    def initialize(market_id, options={})
+      @market_id     = market_id
+      @ask_order_book = OrderBook.new(market_id, :ask, options)
+      @bid_order_book = OrderBook.new(market_id, :bid, options)
     end
 
     def get_books(type)

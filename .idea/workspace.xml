@@ -3,7 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="76042d0d-e191-4bdd-a049-9ff561819550" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/matching.rb" afterPath="$PROJECT_DIR$/lib/matching.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/matching/constants.rb" afterPath="$PROJECT_DIR$/lib/matching/constants.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/matching/engine.rb" afterPath="$PROJECT_DIR$/lib/matching/engine.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/matching/limit_order.rb" afterPath="$PROJECT_DIR$/lib/matching/limit_order.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/matching/market_order.rb" afterPath="$PROJECT_DIR$/lib/matching/market_order.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/matching/order_book.rb" afterPath="$PROJECT_DIR$/lib/matching/order_book.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/matching/order_book_manager.rb" afterPath="$PROJECT_DIR$/lib/matching/order_book_manager.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/test_helper.rb" afterPath="$PROJECT_DIR$/test/test_helper.rb" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,7 +20,7 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/matching@All_tests_in_matching__matching.coverage" NAME="All tests in matching: matching Coverage Results" MODIFIED="1505134104394" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="matching" />
-    <SUITE FILE_PATH="coverage/matching@Run_test__matching_test___matching.coverage" NAME="Run test 'matching_test': matching Coverage Results" MODIFIED="1505124641055" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="matching" />
+    <SUITE FILE_PATH="coverage/matching@Run_test__matching_test___matching.coverage" NAME="Run test 'matching_test': matching Coverage Results" MODIFIED="1505380391684" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="matching" />
     <SUITE FILE_PATH="coverage/matching@test_match_order_with_many_counter_orders_should_execute_trade__matching.coverage" NAME="test_match_order_with_many_counter_orders_should_execute_trade: matching Coverage Results" MODIFIED="1505121553946" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="matching" />
     <SUITE FILE_PATH="coverage/matching@test_fully_trade_limit_order__matching.coverage" NAME="test_fully_trade_limit_order: matching Coverage Results" MODIFIED="1505123587016" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="matching" />
     <SUITE FILE_PATH="coverage/matching@test_partial_match_incoming_order_should_execute_trade__matching.coverage" NAME="test_partial_match_incoming_order_should_execute_trade: matching Coverage Results" MODIFIED="1505134871141" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="matching" />
@@ -24,18 +30,18 @@
       <file leaf-file-name="constants.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/matching/constants.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+            <state relative-caret-position="0">
+              <caret line="0" column="19" lean-forward="false" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="engine.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/matching/engine.rb">
+      <file leaf-file-name="market_order.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/matching/market_order.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="16" column="47" lean-forward="false" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="47" />
+            <state relative-caret-position="247">
+              <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -64,8 +70,8 @@
       <file leaf-file-name="matching.gemspec" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/matching.gemspec">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="6" column="23" lean-forward="false" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
+            <state relative-caret-position="475">
+              <caret line="25" column="54" lean-forward="true" selection-start-line="25" selection-start-column="54" selection-end-line="25" selection-end-column="54" />
               <folding />
             </state>
           </provider>
@@ -74,8 +80,8 @@
       <file leaf-file-name="order_book.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/matching/order_book.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2394">
-              <caret line="126" column="45" lean-forward="false" selection-start-line="126" selection-start-column="45" selection-end-line="126" selection-end-column="45" />
+            <state relative-caret-position="-1371">
+              <caret line="8" column="8" lean-forward="false" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -84,8 +90,18 @@
       <file leaf-file-name="limit_order.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/matching/limit_order.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1121">
-              <caret line="59" column="18" lean-forward="false" selection-start-line="59" selection-start-column="8" selection-end-line="59" selection-end-column="18" />
+            <state relative-caret-position="226">
+              <caret line="12" column="40" lean-forward="true" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_helper.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test/test_helper.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="348">
+              <caret line="19" column="7" lean-forward="true" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -94,18 +110,18 @@
       <file leaf-file-name="order_book_manager.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/matching/order_book_manager.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+            <state relative-caret-position="304">
+              <caret line="16" column="35" lean-forward="true" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="matching.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="matching.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/matching.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="8" column="25" lean-forward="false" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+            <state relative-caret-position="38">
+              <caret line="2" column="21" lean-forward="true" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -123,7 +139,6 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>ask_orders</find>
-      <find>market</find>
       <find>market_id</find>
       <find>@market</find>
       <find>price_level</find>
@@ -133,6 +148,8 @@
       <find>Executor</find>
       <find>ZERO</find>
       <find>TradeExecutionError</find>
+      <find>market</find>
+      <find>LimitOrder.new</find>
     </findStrings>
     <replaceStrings>
       <replace>@market_id</replace>
@@ -149,18 +166,18 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/test/test_helper.rb" />
-        <option value="$PROJECT_DIR$/lib/matching/limit_order.rb" />
-        <option value="$PROJECT_DIR$/lib/matching/market_order.rb" />
-        <option value="$PROJECT_DIR$/lib/matching/order_book_manager.rb" />
         <option value="$PROJECT_DIR$/test/matching_test.rb" />
         <option value="$PROJECT_DIR$/matching.gemspec" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/lib/matching/constants.rb" />
         <option value="$PROJECT_DIR$/lib/matching/config.rb" />
-        <option value="$PROJECT_DIR$/lib/matching/order_book.rb" />
-        <option value="$PROJECT_DIR$/lib/matching/engine.rb" />
         <option value="$PROJECT_DIR$/lib/matching.rb" />
+        <option value="$PROJECT_DIR$/lib/matching/constants.rb" />
+        <option value="$PROJECT_DIR$/lib/matching/engine.rb" />
+        <option value="$PROJECT_DIR$/lib/matching/order_book.rb" />
+        <option value="$PROJECT_DIR$/lib/matching/order_book_manager.rb" />
+        <option value="$PROJECT_DIR$/lib/matching/limit_order.rb" />
+        <option value="$PROJECT_DIR$/lib/matching/market_order.rb" />
+        <option value="$PROJECT_DIR$/test/test_helper.rb" />
       </list>
     </option>
   </component>
@@ -244,7 +261,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Test::Unit/Shoulda/Minitest.test_partial_match_incoming_order_should_execute_trade: matching">
+  <component name="RunManager" selected="Test::Unit/Shoulda/Minitest.Run test 'matching_test': matching">
     <configuration name="All tests in matching: matching" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest" temporary="true">
       <predefined_log_file id="RUBY_TESTUNIT" enabled="true" />
       <module name="matching" />
@@ -394,9 +411,9 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Test::Unit/Shoulda/Minitest.test_partial_match_incoming_order_should_execute_trade: matching" />
-        <item index="1" class="java.lang.String" itemvalue="Test::Unit/Shoulda/Minitest.All tests in matching: matching" />
-        <item index="2" class="java.lang.String" itemvalue="Test::Unit/Shoulda/Minitest.Run test 'matching_test': matching" />
+        <item index="0" class="java.lang.String" itemvalue="Test::Unit/Shoulda/Minitest.Run test 'matching_test': matching" />
+        <item index="1" class="java.lang.String" itemvalue="Test::Unit/Shoulda/Minitest.test_partial_match_incoming_order_should_execute_trade: matching" />
+        <item index="2" class="java.lang.String" itemvalue="Test::Unit/Shoulda/Minitest.All tests in matching: matching" />
         <item index="3" class="java.lang.String" itemvalue="Test::Unit/Shoulda/Minitest.test_fully_trade_limit_order: matching" />
         <item index="4" class="java.lang.String" itemvalue="Test::Unit/Shoulda/Minitest.test_match_order_with_many_counter_orders_should_execute_trade: matching" />
       </list>
@@ -418,7 +435,8 @@
       <workItem from="1505055723940" duration="1809000" />
       <workItem from="1505114347342" duration="20196000" />
       <workItem from="1505187880811" duration="2037000" />
-      <workItem from="1505378353258" duration="142000" />
+      <workItem from="1505378353258" duration="1153000" />
+      <workItem from="1505379814210" duration="583000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1505093028075</created>
@@ -504,33 +522,40 @@
       <option name="project" value="LOCAL" />
       <updated>1505188924321</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="调整">
+      <created>1505378506034</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1505378506034</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="All_tests_in_matching__matching - 2017.09.11 at 20h 34m 47s.xml">
-      <configuration name="All tests in matching: matching" configurationId="TestUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="All_tests_in_matching__matching - 2017.09.11 at 20h 35m 07s.xml">
-      <configuration name="All tests in matching: matching" configurationId="TestUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="All_tests_in_matching__matching - 2017.09.11 at 20h 35m 30s.xml">
-      <configuration name="All tests in matching: matching" configurationId="TestUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="All_tests_in_matching__matching - 2017.09.11 at 20h 44m 53s.xml">
-      <configuration name="All tests in matching: matching" configurationId="TestUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="All_tests_in_matching__matching - 2017.09.11 at 20h 46m 31s.xml">
-      <configuration name="All tests in matching: matching" configurationId="TestUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="All_tests_in_matching__matching - 2017.09.11 at 20h 47m 48s.xml">
-      <configuration name="All tests in matching: matching" configurationId="TestUnitRunConfigurationType" />
-    </history-entry>
     <history-entry file="All_tests_in_matching__matching - 2017.09.11 at 20h 47m 59s.xml">
       <configuration name="All tests in matching: matching" configurationId="TestUnitRunConfigurationType" />
     </history-entry>
     <history-entry file="All_tests_in_matching__matching - 2017.09.11 at 20h 48m 24s.xml">
       <configuration name="All tests in matching: matching" configurationId="TestUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="Run_test_'matching_test'__matching - 2017.09.14 at 16h 59m 41s.xml">
+      <configuration name="Run test 'matching_test': matching" configurationId="TestUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="Run_test_'matching_test'__matching - 2017.09.14 at 17h 01m 04s.xml">
+      <configuration name="Run test 'matching_test': matching" configurationId="TestUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="Run_test_'matching_test'__matching - 2017.09.14 at 17h 01m 28s.xml">
+      <configuration name="Run test 'matching_test': matching" configurationId="TestUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="Run_test_'matching_test'__matching - 2017.09.14 at 17h 01m 50s.xml">
+      <configuration name="Run test 'matching_test': matching" configurationId="TestUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="Run_test_'matching_test'__matching - 2017.09.14 at 17h 09m 55s.xml">
+      <configuration name="Run test 'matching_test': matching" configurationId="TestUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="Run_test_'matching_test'__matching - 2017.09.14 at 17h 13m 12s.xml">
+      <configuration name="Run test 'matching_test': matching" configurationId="TestUnitRunConfigurationType" />
     </history-entry>
     <history-entry file="test_partial_match_incoming_order_should_execute_trade__matching - 2017.09.11 at 20h 59m 01s.xml">
       <configuration name="test_partial_match_incoming_order_should_execute_trade: matching" configurationId="TestUnitRunConfigurationType" />
@@ -540,19 +565,20 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38723000" />
+    <option name="totallyTimeSpent" value="40317000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="1023" extended-state="0" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26495728" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26800978" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291536" sideWeight="0.507326" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291536" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291536" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291536" sideWeight="0.497558" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3291536" sideWeight="0.497558" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3291536" sideWeight="0.492674" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291536" sideWeight="0.492674" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -560,7 +586,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291536" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -581,7 +606,8 @@
     <MESSAGE value="bugfix" />
     <MESSAGE value="remove config" />
     <MESSAGE value="add require" />
-    <option name="LAST_COMMIT_MESSAGE" value="add require" />
+    <MESSAGE value="调整" />
+    <option name="LAST_COMMIT_MESSAGE" value="调整" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -823,24 +849,10 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/matching/executor.rb" />
-    <entry file="file://$PROJECT_DIR$/test/test_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" column="22" lean-forward="true" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/matching/price_level.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19">
           <caret line="1" column="18" lean-forward="false" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/matching/market_order.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" column="12" lean-forward="false" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -856,18 +868,18 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/matching/config.rb" />
-    <entry file="file://$PROJECT_DIR$/lib/matching/constants.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
           <caret line="6" column="5" lean-forward="false" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/matching.gemspec">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="25" column="54" lean-forward="true" selection-start-line="25" selection-start-column="54" selection-end-line="25" selection-end-column="54" />
           <folding />
         </state>
       </provider>
@@ -880,50 +892,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/matching.gemspec">
+    <entry file="file://$PROJECT_DIR$/lib/matching.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="23" lean-forward="false" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/matching/order_book.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2394">
-          <caret line="126" column="45" lean-forward="false" selection-start-line="126" selection-start-column="45" selection-end-line="126" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/matching/limit_order.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1121">
-          <caret line="59" column="18" lean-forward="false" selection-start-line="59" selection-start-column="8" selection-end-line="59" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/matching/order_book_manager.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+        <state relative-caret-position="38">
+          <caret line="2" column="21" lean-forward="true" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/matching/engine.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" column="47" lean-forward="false" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="47" />
+        <state relative-caret-position="587">
+          <caret line="82" column="65" lean-forward="false" selection-start-line="82" selection-start-column="65" selection-end-line="82" selection-end-column="65" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/matching.rb">
+    <entry file="file://$PROJECT_DIR$/lib/matching/constants.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="25" lean-forward="false" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+        <state relative-caret-position="0">
+          <caret line="0" column="19" lean-forward="false" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/matching/order_book.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1371">
+          <caret line="8" column="8" lean-forward="false" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/matching/order_book_manager.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" column="35" lean-forward="true" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/matching/limit_order.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="12" column="40" lean-forward="true" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/matching/market_order.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/test_helper.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="19" column="7" lean-forward="true" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
           <folding />
         </state>
       </provider>
