@@ -15,7 +15,7 @@ module Matching
                                    timestamp: Time.now.to_i,
                                    volume: 1+rand(10),
                                    price: 3000+rand(3000),
-                                   market_id: 'btccny'
+                                   market: 'btccny'
                                }.merge(attrs))
     end
 
