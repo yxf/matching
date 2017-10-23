@@ -8,18 +8,6 @@ require 'matching/order_book'
 require 'matching/order_book_manager'
 require 'matching/engine'
 
-begin
-  Required::Module::const_get "Rails"
-rescue NameError
-  module Rails
-    # @@logger = Logger.new('./log.log', 'daily')
-    @@logger = Logger.new($stdout)
-    def self.logger
-      @@logger
-    end
-  end
-end
-
 module Matching
   class << self
     attr_accessor :order_traded
