@@ -2,6 +2,7 @@ require "test_helper"
 require "bigdecimal"
 require "bigdecimal/util"
 require "rbtree"
+
 require_relative "../lib/matching/limit_order"
 require_relative "../lib/matching/order_book_manager"
 require_relative "../lib/matching/order_book"

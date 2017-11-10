@@ -7,12 +7,19 @@ require 'matching/price_level'
 require 'matching/order_book'
 require 'matching/order_book_manager'
 require 'matching/engine'
+require 'active_support'
+require 'active_support/core_ext'
 
 module Matching
   class << self
     attr_accessor :order_traded
     attr_accessor :order_canceled
     attr_accessor :order_book_changed
+
+
+    def logger
+      @logger ||= Logger.new(STDOUT)
+    end
 
     def init!
       @order_traded = -> data { puts data }
