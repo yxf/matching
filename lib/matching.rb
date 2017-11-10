@@ -1,4 +1,5 @@
 require 'logger'
+require 'rbtree'
 require 'matching/version'
 require 'matching/constants'
 require 'matching/limit_order'
