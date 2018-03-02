@@ -2,7 +2,7 @@ require_relative 'constants'
 
 module Matching
   class MarketOrder
-    attr_accessor :id, :timestamp, :type, :locked, :market_id, :volume
+    attr_accessor :id, :timestamp, :type, :locked, :market_id, :volume, :base_precision
 
     def initialize(attrs)
       @id         = attrs[:id]
@@ -10,7 +10,8 @@ module Matching
       @type       = attrs[:type].to_sym
       @locked     = attrs[:locked].to_d
       @volume     = attrs[:volume].to_d
-      @market_id     = attrs[:market]
+      @market_id      = attrs[:market]
+      @base_precision = attrs[:base_precision]
 
       raise Matching::InvalidOrderError.new(attrs) unless valid?(attrs)
     end
@@ -30,7 +31,7 @@ module Matching
     end
 
     def volume_limit(trade_price)
-      type == :ask ? locked : locked/trade_price
+      type == :ask ? locked : (locked/trade_price).floor(base_precision)
     end
 
     def fill(trade_price, trade_volume, trade_funds)

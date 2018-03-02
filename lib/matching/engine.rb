@@ -1,6 +1,6 @@
 module Matching
   class Engine
-
+    DEFAULT_PRECISION = 8
     attr_accessor :order_book_manager
 
     def ask_order_book
@@ -11,10 +11,23 @@ module Matching
       @order_book_manager.bid_order_book
     end
 
-    # Matching::Engine.new('btccny')
+    # Matching::Engine.new('ethbtc')
+    # options example:
+    # { 
+    #   id: ethbtc
+    #   code: 1
+    #   name: ETH/BTC
+    #   base_unit: eth
+    #   quote_unit: btc
+    #   price_group_fixed: 3
+    #   bid: {fee: 0.001, currency: btc, fixed: 8}
+    #   ask: {fee: 0.001, currency: eth, fixed: 8}
+    #   sort_order: 1
+    # }
     def initialize(market_id, options={})
       @market_id    = market_id
       @order_book_manager    = OrderBookManager.new(market_id)
+      @options = options
     end
 
     def submit(order)
@@ -52,6 +65,8 @@ module Matching
 
     def match(order, counter_book)
       return if order.filled?
+      return if tiny?(order)
+
       counter_order = counter_book.top
       return unless counter_order
 
@@ -88,5 +103,11 @@ module Matching
       Matching.order_canceled && Matching.order_canceled.call({action: 'cancel', order: order.attributes})
     end
 
+    # 检查委托数量时候小于最小精度
+    def tiny?(order)
+      fixed = @options['ask']['fixed'] || DEFAULT_PRECISION
+      min_volume = '1'.to_d / (10 ** fixed)
+      order.volume < min_volume
+    end
   end
 end
