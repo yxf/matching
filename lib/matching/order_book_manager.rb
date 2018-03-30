@@ -27,5 +27,9 @@ module Matching
       end
     end
 
+    def clear
+      @ask_order_book.clear
+      @bid_order_book.clear
+    end
   end
 end

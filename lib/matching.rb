@@ -22,6 +22,10 @@ module Matching
       @logger ||= Logger.new(STDOUT)
     end
 
+    def logger=(logger)
+      @logger = logger
+    end
+
     def init!
       @order_traded = -> data { puts data }
       @order_canceled = -> data { puts data }

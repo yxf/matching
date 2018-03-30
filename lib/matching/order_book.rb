@@ -85,6 +85,11 @@ module Matching
       @market_orders.values
     end
 
+    def clear
+      @limit_orders.clear
+      @market_orders.clear
+    end
+
     private
 
     def remove_limit_order(order)

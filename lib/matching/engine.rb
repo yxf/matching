@@ -2,6 +2,7 @@ module Matching
   class Engine
     DEFAULT_PRECISION = 8
     attr_accessor :order_book_manager
+    attr_reader :options
 
     def ask_order_book
       @order_book_manager.ask_order_book
@@ -61,6 +62,10 @@ module Matching
         bid: bid_order_book.market_orders }
     end
 
+    def clear
+      order_book_manager.clear
+    end
+
     private
 
     def match(order, counter_book)
@@ -70,12 +75,15 @@ module Matching
       counter_order = counter_book.top
       return unless counter_order
 
+      start = Time.now
+
       if trade = order.trade_with(counter_order, counter_book)
 
         counter_book.fill_top *trade
         order.fill *trade
-
         publish order, counter_order, trade
+
+        Matching.logger.info "Match: #{@market_id}/$#{trade[0]}/v:#{trade[1]}/f:#{trade[2]} (#{((Time.now - start) * 1000).round(3)}ms)"
 
         match order, counter_book
       end
@@ -90,12 +98,24 @@ module Matching
     def publish(order, counter_order, trade)
       ask, bid = order.type == :ask ? [order, counter_order] : [counter_order, order]
 
+      taker = order
+      maker = counter_order
+
       price  = trade[0]
       volume = trade[1]
       funds  = trade[2]
 
-      Matching.logger.info "[#{@market_id}] new trade - ask: #{ask.label} bid: #{bid.label} price: #{price} volume: #{volume} funds: #{funds}"
-      Matching.order_traded && Matching.order_traded.call({market: @market_id, ask_id: ask.id, bid_id: bid.id, strike_price: price, volume: volume, funds: funds})
+      data = {
+        market: @market_id, 
+        ask_id: ask.id, 
+        bid_id: bid.id, 
+        strike_price: price, 
+        volume: volume, 
+        funds: funds,
+        taker_id: taker.id,
+        maker_id: maker.id
+      }
+      Matching.order_traded && Matching.order_traded.call(data)
     end
 
     def publish_cancel(order, reason)
