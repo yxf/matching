@@ -42,9 +42,10 @@ module Matching
     def cancel(order)
       book, counter_book = @order_book_manager.get_books order.type
       if removed_order = book.remove(order)
-        publish_cancel removed_order, "cancelled by user"
+        publish_cancel removed_order, "cancelled_by_user"
       else
-        Matching.logger.warn "Cannot find order##{order.id} to cancel, skip."
+        # publish_cancel removed_order, "not_found"
+        Matching.logger.warn "Skip: Cannot find order##{order.id} to cancel"
       end
     rescue
       Matching.logger.fatal "Failed to cancel order #{order.label}: #{$!}"
@@ -84,7 +85,7 @@ module Matching
     def add_or_cancel(order, book)
       return if order.filled?
       order.is_a?(LimitOrder) ?
-        book.add(order) : publish_cancel(order, "fill or kill market order")
+        book.add(order) : publish_cancel(order, "fill_or_kill") #fill or kill market order
     end
 
     def publish(order, counter_order, trade)
@@ -94,13 +95,24 @@ module Matching
       volume = trade[1]
       funds  = trade[2]
 
-      Matching.logger.info "[#{@market_id}] new trade - ask: #{ask.label} bid: #{bid.label} price: #{price} volume: #{volume} funds: #{funds}"
-      Matching.order_traded && Matching.order_traded.call({market: @market_id, ask_id: ask.id, bid_id: bid.id, strike_price: price, volume: volume, funds: funds})
+      payload = {
+        market: @market_id, 
+        ask_id: ask.id, 
+        bid_id: bid.id, 
+        strike_price: price, 
+        volume: volume, 
+        funds: funds
+      }
+      Matching.order_traded && Matching.order_traded.call(payload)
     end
 
     def publish_cancel(order, reason)
-      Matching.logger.info "[#{@market_id}] cancel order ##{order.id} - reason: #{reason}"
-      Matching.order_canceled && Matching.order_canceled.call({action: 'cancel', order: order.attributes})
+      payload = {
+        action: 'cancel', 
+        order: order.attributes,
+        reason: reason
+      }
+      Matching.order_canceled && Matching.order_canceled.call(payload)
     end
 
     # 检查委托数量时候小于最小精度
