@@ -43,9 +43,10 @@ module Matching
     def cancel(order)
       book, counter_book = @order_book_manager.get_books order.type
       if removed_order = book.remove(order)
-        publish_cancel removed_order, "cancelled by user"
+        publish_cancel removed_order, "cancelled_by_user"
       else
-        Matching.logger.warn "Cannot find order##{order.id} to cancel, skip."
+        # publish_cancel removed_order, "not_found"
+        Matching.logger.warn "Skip: Cannot find order##{order.id} to cancel"
       end
     rescue
       Matching.logger.fatal "Failed to cancel order #{order.label}: #{$!}"
@@ -75,16 +76,10 @@ module Matching
       counter_order = counter_book.top
       return unless counter_order
 
-      start = Time.now
-
       if trade = order.trade_with(counter_order, counter_book)
-
         counter_book.fill_top *trade
         order.fill *trade
         publish order, counter_order, trade
-
-        Matching.logger.info "Match: #{@market_id}/$#{trade[0]}/v:#{trade[1]}/f:#{trade[2]} (#{((Time.now - start) * 1000).round(3)}ms)"
-
         match order, counter_book
       end
     end
@@ -92,7 +87,7 @@ module Matching
     def add_or_cancel(order, book)
       return if order.filled?
       order.is_a?(LimitOrder) ?
-        book.add(order) : publish_cancel(order, "fill or kill market order")
+        book.add(order) : publish_cancel(order, "fill_or_kill") #fill or kill market order
     end
 
     def publish(order, counter_order, trade)
@@ -119,8 +114,12 @@ module Matching
     end
 
     def publish_cancel(order, reason)
-      Matching.logger.info "[#{@market_id}] cancel order ##{order.id} - reason: #{reason}"
-      Matching.order_canceled && Matching.order_canceled.call({action: 'cancel', order: order.attributes})
+      payload = {
+        action: 'cancel', 
+        order: order.attributes,
+        reason: reason
+      }
+      Matching.order_canceled && Matching.order_canceled.call(payload)
     end
 
     # 检查委托数量时候小于最小精度
